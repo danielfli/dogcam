@@ -1,9 +1,11 @@
 #include <iostream>
+#include "dogCamlib.hpp"
 
 using namespace std;
 
-main(int argc, char const *argv[])
+int main()
 {
-    cout << "Hello Dog Lover" << endl;
+    printHelloDog(); 
+
     return 0;
 }
