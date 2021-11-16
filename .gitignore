@@ -3,6 +3,8 @@
 ################################
 # directories
 build/
+build_arm/
+build_armv6/
 .vscode/
 
 # Prerequisites
