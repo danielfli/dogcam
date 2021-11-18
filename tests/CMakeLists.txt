@@ -2,7 +2,7 @@ enable_testing()
 
 add_executable(
   hello_test
-  main.cpp
+  hellotest.cpp
 )
 target_link_libraries(
   hello_test
@@ -10,4 +10,6 @@ target_link_libraries(
 )
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+if(NOT CMAKE_CROSSCOMPILING)
+  gtest_discover_tests(hello_test)
+endif()
