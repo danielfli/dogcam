@@ -1,0 +1,9 @@
+[submodule "external/libcamera"]
+	path = external/libcamera
+	url = https://git.libcamera.org/libcamera/libcamera.git
+	branch = master
+
+[submodule "external/libcamera-apps"]
+	path = external/libcamera-apps
+	url = https://github.com/raspberrypi/libcamera-apps
+	branch = main

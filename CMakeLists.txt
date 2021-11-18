@@ -10,23 +10,12 @@ set(CMAKE_CXX_EXTENSIONS            OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS   ON)
 
 # Options
-option(ENABLE_WARNINGS      "Enable to add warnings to a target."   ON)
-option(ENABLE_CROSSCOMPILING_RPI0 "Enable Cross compiling fpr armv6." ON)
+option(ENABLE_WARNINGS              "Enable to add warnings to a target."   ON)
+option(ENABLE_CROSSCOMPILING_RPI0   "Enable Cross compiling for Pi Zero arch = armv6." ON)
+option(ENABLE_TESTING               "Enable a Unit Testing build."          ON)
 
-# option(ENABLE_TESTING       "Enable a Unit Testing build."          ON)
-# option(ENABLE_COVERAGE      "Enable a Code Coverage build."         OFF)
-# option(ENABLE_BENCHMARKS    "Enable a benchmark build."             ON)
-# option(ENABLE_CLANG_TIDY    "Enable a clang tidy checks."           OFF)
-# option(ENABLE_CPPCHECK      "Enable a cppcheck checks."             OFF)
-# option(ENABLE_LTO           "Enable Link Time Optimization (LTO)."  OFF)
-# option(ENABLE_CCACHE        "Enable the usage of Ccache."           OFF)
-
-# if(ENABLE_CROSSCOMPILING_RPI0)
-#     message("Corss Compiling for RPI0..")
-#     # set(CMAKE_TOOLCHAIN_FILE "/cmake/toolchain-rpi.cmake")
-# endif(ENABLE_CROSSCOMPILING_RPI0)
-
-if(CMAKE_CROSSCOMPILING)
+# Cross Compiling for Pi zero architecture  
+if(CMAKE_CROSSCOMPILING AND ENABLE_CROSSCOMPILING_RPI0)
     message("Enable the Cross Compiler for RPI0..")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=armv6")
 endif()
@@ -35,8 +24,16 @@ endif()
 set(LIBRARY_NAME    ${PROJECT}_Lib)
 set(EXECUTABLE_NAME ${PROJECT}_Executable)
 
+# Add external Projects 
+add_subdirectory(external)
+
 # Add first-party libraries
 add_subdirectory(src)
+
+# Add GTest
+if(ENABLE_TESTING)    
+    add_subdirectory(tests)
+endif() 
 
 # Add executables
 add_subdirectory(app)

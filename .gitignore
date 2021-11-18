@@ -7,6 +7,9 @@ build_arm/
 build_armv6/
 .vscode/
 
+libcamera/
+libcamera-apps/
+
 # Prerequisites
 *.d
 
