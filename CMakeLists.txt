@@ -4,7 +4,7 @@ set(PROJECT "dogcam")
 project("${PROJECT}_Project" VERSION 0.0.1 LANGUAGES CXX)
 
 # Global CMake variables are set here
-set(CMAKE_CXX_STANDARD              11)
+set(CMAKE_CXX_STANDARD              17)
 set(CMAKE_CXX_STANDARD_REQUIRED     ON)
 set(CMAKE_CXX_EXTENSIONS            OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS   ON)
@@ -22,14 +22,22 @@ endif()
 
 # Project/Library Names
 set(LIBRARY_NAME    ${PROJECT}_Lib)
-set(EXECUTABLE_NAME ${PROJECT}_Executable)
+set(EXECUTABLE_NAME ${PROJECT}_Exe)
 
 # Add conan Library
 # include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 # conan_basic_setup()
 
 # Add external Projects 
-add_subdirectory(external)
+#add_subdirectory(external)
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBCAMERA REQUIRED libcamera)
+message(STATUS "libcamera library found:")
+message(STATUS "    version: ${LIBCAMERA_VERSION}")
+message(STATUS "    libraries: ${LIBCAMERA_LINK_LIBRARIES}")
+message(STATUS "    include path: ${LIBCAMERA_INCLUDE_DIRS}")
+include_directories(${CMAKE_SOURCE_DIR} ${LIBCAMERA_INCLUDE_DIRS})
 
 # Add first-party libraries
 add_subdirectory(src)

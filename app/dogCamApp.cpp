@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    printHelloDog(); 
-    print_boost_version(); 
+    dogCamApp app;
+    app.StartVision();
     return 0;
 }

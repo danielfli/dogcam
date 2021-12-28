@@ -1,12 +1,20 @@
 #include "dogCamlib.hpp"
-#include "boost/version.hpp"
 
-void printHelloDog()
+
+dogCamApp::dogCamApp()
 {
-    std::cout << "Hello Dog Lover..." << std::endl; 
+    
 }
 
-void print_boost_version()
+dogCamApp::~dogCamApp()
 {
-    std::cout << " Boost version: " << BOOST_VERSION << std::endl; 
+}
+
+bool dogCamApp::StartVision()
+{
+    bool result{};
+    std::cout << "DogCam Vision starting..." << std::endl;
+    // result = vision.StartUpCamera();
+    result = myCamera.
+    return result;
 }
