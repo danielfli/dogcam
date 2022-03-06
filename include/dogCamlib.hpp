@@ -1,9 +1,8 @@
 #pragma once 
-// #include "../src/Vision.hpp"
-#include "../src/Camera.hpp"
+#include "../src/Vision.hpp"
+// #include "../src/camera/Camera.hpp"
 
 #include <iostream>
-
 
 class dogCamApp
 {
@@ -11,10 +10,22 @@ public:
     dogCamApp();
     ~dogCamApp();
 
-    bool StartVision();
+    // true -> Error
+    bool TakePicture(std::string name);
+
+    /* fehlende Funktionen
+        - Video()
+        - Webcame()
+        - Sound()
+        - dogCamEnv() //environment
+
+        environment:
+        - video Bilder hochladen 
+        - 
+    */
     
 
 private:
-    //  Vision vision;
-    Camera myCamera{};
+     Vision vision;
+    // Camera myCamera{};
 };

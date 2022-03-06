@@ -16,7 +16,7 @@ sudo rpi-update
 mkdir build
 cd build
 cmake ..
-make -j2
+make -j2 
 ```
 ## Install GStreamer
 
@@ -66,3 +66,11 @@ cd build
 cmake ..
 make -j2
 ```
+
+### Configuration 
+
+**Raspberry Pi 4 bullseye:** 
+
+*/boot/config.txt*
+- camera_auto_detect=1
+- dtoverlay=vc4-fkms-v3d

@@ -1,6 +1,8 @@
 #pragma once 
-#include "Camera.hpp"
 
+#include <string>
+
+#include "camera/Camera.hpp"
 
 class Vision 
 {
@@ -8,10 +10,16 @@ public:
     Vision();
     ~Vision();
 
-    bool StartUpCamera();
+    bool CameraOpen();
+    bool CameraOpenforStillmode();
 
-    bool TakePicture();
+    bool CameraStart();
+
+    bool ConfigStillMode();
+
+    bool TakePicture(std::string name); 
 
 private:
     Camera camera{};
+    bool camera_acquired_;
 };

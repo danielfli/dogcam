@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.18)
 
 set(PROJECT "dogcam")
 project("${PROJECT}_Project" VERSION 0.0.1 LANGUAGES CXX)
@@ -8,11 +8,13 @@ set(CMAKE_CXX_STANDARD              17)
 set(CMAKE_CXX_STANDARD_REQUIRED     ON)
 set(CMAKE_CXX_EXTENSIONS            OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS   ON)
+add_compile_options(-Wall -Wextra -pedantic -Wno-unused-parameter -faligned-new -Werror -Wfatal-errors)
+# option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
 # Options
 option(ENABLE_WARNINGS              "Enable to add warnings to a target."   ON)
-option(ENABLE_CROSSCOMPILING_RPI0   "Enable Cross compiling for Pi Zero arch = armv6." ON)
-option(ENABLE_TESTING               "Enable a Unit Testing build."          ON)
+option(ENABLE_CROSSCOMPILING_RPI0   "Enable Cross compiling for Pi Zero arch = armv6." OFF)
+option(ENABLE_TESTING               "Enable a Unit Testing build."          OFF)
 
 # Cross Compiling for Pi zero architecture 
 if(CMAKE_CROSSCOMPILING AND ENABLE_CROSSCOMPILING_RPI0)
@@ -21,8 +23,10 @@ if(CMAKE_CROSSCOMPILING AND ENABLE_CROSSCOMPILING_RPI0)
 endif()
 
 # Project/Library Names
-set(LIBRARY_NAME    ${PROJECT}_Lib)
-set(EXECUTABLE_NAME ${PROJECT}_Exe)
+set(LIBRARY_DOGCAM    ${PROJECT}_Lib)
+set(LIBRARY_LIBCAMERA ${PROJECT}_Lib_libcamera)
+set(LIBRARY_IMAGE     ${PROJECT}_Lib_Image)
+set(EXECUTABLE_NAME   ${PROJECT}_exe)
 
 # Add conan Library
 # include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)

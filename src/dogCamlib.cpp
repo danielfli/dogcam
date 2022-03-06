@@ -1,20 +1,18 @@
-#include "dogCamlib.hpp"
-
+#include "../include/dogCamlib.hpp"
+#include "Vision.hpp"
 
 dogCamApp::dogCamApp()
 {
-    
 }
 
 dogCamApp::~dogCamApp()
 {
 }
 
-bool dogCamApp::StartVision()
+bool dogCamApp::TakePicture(std::string name)
 {
-    bool result{};
-    std::cout << "DogCam Vision starting..." << std::endl;
-    // result = vision.StartUpCamera();
-    result = myCamera.
-    return result;
+     if (vision.TakePicture(name))
+       return true; // fehler
+
+   return false;
 }
