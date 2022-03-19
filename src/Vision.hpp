@@ -3,6 +3,7 @@
 #include <string>
 
 #include "camera/Camera.hpp"
+#include <ctime>
 
 class Vision 
 {
@@ -17,9 +18,13 @@ public:
 
     bool ConfigStillMode();
 
-    bool TakePicture(std::string name); 
+    bool TakePicture(std::string name);
+
+    std::string GetTimestamp();
 
 private:
     Camera camera{};
     bool camera_acquired_;
+    bool CameraCleanUp();
+    int countPicture{};
 };

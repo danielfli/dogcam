@@ -12,7 +12,7 @@ int main()
     {
         std::cout << "Foto? press 1, break? press 0: "; 
         std::cin >> loop;
-        app.TakePicture("firstPiture");
+        app.TakePicture("image");
     }
 
     // if (app.StartVision())

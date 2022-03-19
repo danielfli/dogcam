@@ -14,5 +14,5 @@ bool dogCamApp::TakePicture(std::string name)
      if (vision.TakePicture(name))
        return true; // fehler
 
-   return false;
+    return false;
 }
