@@ -35,6 +35,20 @@ bool Vision::ConfigStillMode()
     return camera.CameraConfigureStill();
 }
 
+bool Vision::CameraCleanUp()
+{
+     if (camera.CameraStoppen())
+        return true;
+    camera.Teardown();
+
+    return false;
+}
+
+bool Vision::CameraStart()
+{
+    return camera.CameraStarten();
+}
+
 bool Vision::TakePicture(std::string name)
 {
     std::cout << "DogCam Vision starting..." << std::endl;
@@ -67,22 +81,6 @@ bool Vision::TakePicture(std::string name)
      return false; 
 }
 
-bool Vision::CameraCleanUp()
-{
-     if (camera.CameraStoppen())
-        return true;
-    camera.Teardown();
-
-    return false;
-}
-
-bool Vision::CameraStart()
-{
-    return camera.CameraStarten();
-}
-
-
-
 std::string Vision::GetTimestamp()
 {
     time_t now = time(0);
@@ -93,4 +91,10 @@ std::string Vision::GetTimestamp()
     timestamp += std::to_string(1900 + ltm->tm_year);
     timestamp += "_";
     return timestamp;
+}
+
+bool Vision::TakeVideo(std::string name, int duration)
+{
+
+    return false; 
 }

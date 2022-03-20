@@ -11,21 +11,26 @@ public:
     Vision();
     ~Vision();
 
+    bool TakePicture(std::string name);
+    bool TakeVideo(std::string name, int duration);
+
+    
+    
+protected:
+
     bool CameraOpen();
     bool CameraOpenforStillmode();
-
     bool CameraStart();
-
     bool ConfigStillMode();
 
-    bool TakePicture(std::string name);
-
-    std::string GetTimestamp();
 
 private:
     Camera camera{};
     bool camera_acquired_;
     std::string Error;
-    bool CameraCleanUp();
     int countPicture{};
+
+    bool CameraCleanUp();
+    std::string GetTimestamp();
+
 };

@@ -16,11 +16,5 @@ int main()
             app.TakePicture("image");
     }
 
-    // if (app.StartVision())
-    // {
-    //     std::cout << "Camera Start failed!" << std::endl;
-    //     return EXIT_FAILURE;
-    // }
-
     return 0;
 }
