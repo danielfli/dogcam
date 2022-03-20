@@ -59,6 +59,7 @@ public:
 
     //Config für Standbild aufnahme
     bool CameraOpenConfigureStill();
+    bool CameraConfigureStill();
 
     bool CameraStarten();
 

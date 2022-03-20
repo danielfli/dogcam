@@ -25,6 +25,7 @@ public:
 private:
     Camera camera{};
     bool camera_acquired_;
+    std::string Error;
     bool CameraCleanUp();
     int countPicture{};
 };

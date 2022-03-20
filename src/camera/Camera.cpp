@@ -119,6 +119,52 @@ bool Camera::CameraOpenConfigureStill()
     return false; 
 }
 
+bool Camera::CameraConfigureStill()
+{
+    using namespace libcamera;
+
+	//. Config Stillmode
+    std::cout << "camera configuration for Still capture..." << std::endl;
+
+	StreamRoles stream_roles;
+	stream_roles = { StreamRole::StillCapture, StreamRole::Raw };
+	m_Configuration = m_Camera->generateConfiguration(stream_roles);
+	if (!m_Configuration)
+    {
+        std::cout << "failed to generate still capture configuration" << std::endl;
+        return true;
+    }
+        
+	//default settings for still capture 
+	m_Configuration->at(0).pixelFormat = libcamera::formats::YUV420;
+    m_Configuration->at(0).colorSpace = libcamera::ColorSpace::Jpeg;
+
+    //ToDo: Hardcoded width hidth. 
+    m_Configuration->at(0).size.width = 2592;
+    m_Configuration->at(0).size.height = 1944;
+
+	post_processor_.AdjustConfig("still", &m_Configuration->at(0));
+
+    //ToDo: Add deNoise and Transform Option
+    // m_Configuration->transform = options_->transform;
+	// configureDenoise(options_->denoise == "auto" ? "cdn_hq" : options_->denoise);
+
+	if(setupCapture())
+    {
+        std::cout << "Error setupCature faild!" << std::endl;
+        return true; 
+    }
+
+    streams_["still"] = m_Configuration->at(0).stream();
+
+	post_processor_.Configure();
+
+    //ToDo: Ausgabe 
+	std::cout << "Still capture setup complete" << std::endl;
+    
+    return false; 
+}
+
  bool Camera::setupCapture()
  {
      using namespace libcamera;
